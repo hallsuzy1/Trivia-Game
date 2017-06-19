@@ -1,0 +1,28 @@
+body {
+  background-color: #3D1255;
+}
+
+h1 {
+  text-align: center;
+  color: #D4D46a;
+  font-family: 'Pangolin', cursive;
+}
+
+h3 {
+  text-align: center;
+  color: #260339;
+  font-family: 'Pangolin', cursive;
+}
+
+.jumbotron {
+  background-color: #AAAA39;
+  padding: 10px;
+}
+
+#correctAnswer {
+    font-family: 'Pangolin', cursive;
+    font-size: 30px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-align: center;
+}
