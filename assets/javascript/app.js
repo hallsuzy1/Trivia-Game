@@ -68,21 +68,22 @@ function rotate(){
       if (userChoiceLower === answer){
         $("#correctAnswer").text("Nice Job! The correct answer is: " + userChoiceLower);
         setTimeout(function() { $("#correctAnswer").hide(); }, 5000);
+        w++;
         w = w++;
-        wins = $("#numberCorrect").text(w);
-        console.log(w)
-
-
-
+        i++;
+        i = i++;
+// Que up next question
 
         }  else {
+          // add losses ++ add Que up next question
           $("#correctAnswer").text("Incorrect. Actually, the correct answer is: " + answer);
           setTimeout(function() { $("#correctAnswer").hide(); }, 5000);
           i++;
+          i = i++;
 
         };
-                         i = i++;
-                         rotate();
+        wins = $("#numberCorrect").text(w);
+
  });
 
 
