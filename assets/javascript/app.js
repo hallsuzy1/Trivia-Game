@@ -3,7 +3,7 @@
   var audio = new Audio("cheer.mp3");
 
   var count=60;
-  var counter=setInterval(timer, 1000); //counter will run it every 1 second
+  var counter=setInterval(timer, 1000); //counter will run every 1 second
 
   var w = 0;
   var l = 0;
@@ -64,13 +64,23 @@
   function timeUp() {
       $("#correctAnswer").empty();
       $("#questionHere").html('<h3>Time is Up! Thank you for Playing!</h3>');
-      $("#questionHere").append('<span class = "btn newButton"> click here to play again </span>');
+      $("#questionHere").append('<span id = "restartButton" class = "btn newButton"> click here to play again </span>');
       $("#choiceA").empty();
       $("#choiceB").empty();
       $("#choiceC").empty();
       $("#choiceD").empty();
       audio.play();
+
+// This function restarts the game if the restart button is clicked
+      $(".newButton").click(function(){
+        i = 0;
+        count = 60;
+        timer();
+        gameMode();
+
+      });
   }
+
 
 // This function displays a visual countdown timer on the page
   function timer() {
@@ -82,6 +92,7 @@
     }
     $("#counterSpan").text(count + " seconds");
   }
+
 
 // This function is set up to rotate through the different questions
 function gameMode() {
