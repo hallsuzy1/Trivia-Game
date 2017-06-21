@@ -11,10 +11,11 @@
   var wins = $("#numberCorrect").text(w);
   var losses = $("#numberWrong").text(l);
 
+  var i = 0
+
 
 // Q: [question, 4 choices]
 //A: [corresponding correct answer]
-
   var questions = [
   {
         Q: ["What is the state capital of Michigan?", "A) Lansing", "B) Ann Arbor", "C) Kalamazoo", "D) Detroit"],
@@ -58,34 +59,34 @@
       }
   ];
 
-// This function starts the timer of 60 seconds for the whole game to run
+
+// This function shows the end of game message
   function timeUp() {
-      $("#correctAnswer").text("");
+      $("#correctAnswer").empty();
       $("#questionHere").html('<h3>Time is Up! Thank you for Playing!</h3>');
       $("#questionHere").append('<span class = "btn newButton"> click here to play again </span>');
-      $("#choiceA").text("");
-      $("#choiceB").text("");
-      $("#choiceC").text("");
-      $("#choiceD").text("");
-
+      $("#choiceA").empty();
+      $("#choiceB").empty();
+      $("#choiceC").empty();
+      $("#choiceD").empty();
       audio.play();
   }
+
 // This function displays a visual countdown timer on the page
   function timer() {
     count=count-1;
     if (count <= -1)
     {
        clearInterval(counter);
-       //counter ended, do something here
        return;
     }
     $("#counterSpan").text(count + " seconds");
   }
-  var i = 0
 
 // This function is set up to rotate through the different questions
 function gameMode() {
-  rotate();
+
+   rotate();
 
   $(document).keypress(function(e) {
       var answer = questions[i].A[0];
@@ -95,24 +96,20 @@ function gameMode() {
 
   // check to see if userChoiceLower is correct answer send message that matches
       if (userChoiceLower === answer){
-        $("#correctAnswer").text("Nice Job! The correct answer is: " + userChoiceLower);
-        setTimeout(function() { $("#correctAnswer").hide(); }, 3000);
+        $("#questionHere").text("Nice Job! The correct answer is: " + userChoiceLower);
+        setTimeout(function(){rotate();}, 3000);
         w++;
         w = w++;
         i++;
         i = i++;
-        setTimeout(function(){rotate();}, 3000); // waits 3 seconds before next question
-  // Que up next question
 
         }  else {
-          // add losses ++ add Que up next question
-          $("#correctAnswer").text("Incorrect. Actually, the correct answer is: " + answer);
-          setTimeout(function() { $("#correctAnswer").hide(); }, 3000);
+          $("#questionHere").text("Incorrect. Actually, the correct answer is: " + answer);
+          setTimeout(function(){rotate();}, 3000);
           l++;
           l = l++;
           i++;
           i = i++;
-          setTimeout(function(){rotate();}, 3000);
         };
 
   // update points for correct and incorrect answers
@@ -122,8 +119,11 @@ function gameMode() {
   });
 
 
+
 function rotate(){
-  if (i < 11) {
+  if (i > 9) {
+    timeUp();
+  } else {
 
     $("#questionHere").text(questions[i].Q[0]);
     $("#choiceA").text(questions[i].Q[1]);
@@ -131,14 +131,30 @@ function rotate(){
     $("#choiceC").text(questions[i].Q[3]);
     $("#choiceD").text(questions[i].Q[4]);
     answer = (questions[i].A[0]);
+    console.log("i is" + i);
     console.log(answer);
-  } else {
-      timeUp();
 
   };
+}
 
 }
-};
+
+//   (i < 11) {
+//
+//     $("#questionHere").text(questions[i].Q[0]);
+//     $("#choiceA").text(questions[i].Q[1]);
+//     $("#choiceB").text(questions[i].Q[2]);
+//     $("#choiceC").text(questions[i].Q[3]);
+//     $("#choiceD").text(questions[i].Q[4]);
+//     answer = (questions[i].A[0]);
+//     console.log(answer);
+//   } else {
+//       timeUp();
+//
+//   };
+//
+// }
+// };
   // record answer choice, change to lowercase, store in userChoiceLower variable
 
 
