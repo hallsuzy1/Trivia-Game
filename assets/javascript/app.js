@@ -22,7 +22,7 @@
         A: ["a"]
       },
     {
-        Q: ["What is the state capital of Nebraska?", "A) Omaha", "B) Lincoln", "C) Hastings", "D) Columbs"],
+        Q: ["What is the state capital of Nebraska?", "A) Omaha", "B) Lincoln", "C) Hastings", "D) Columbus"],
         A: ["b"]
       },
     {
@@ -77,6 +77,8 @@
         count = 60;
         timer();
         gameMode();
+        w = 0;
+        l = 0;
 
       });
   }
@@ -99,7 +101,8 @@ function gameMode() {
 
    rotate();
 
-  $(document).keypress(function(e) {
+function key (){
+  $(document).one("keypress", function(e) {
       var answer = questions[i].A[0];
       var userChoice = String.fromCharCode(e.which);
       var userChoiceLower = userChoice.toLowerCase();
@@ -121,13 +124,14 @@ function gameMode() {
           l = l++;
           i++;
           i = i++;
+
         };
 
   // update points for correct and incorrect answers
       wins = $("#numberCorrect").text(w);
       losses = $("#numberWrong").text(l);
-
-  });
+});
+  };
 
 
 
@@ -144,6 +148,7 @@ function rotate(){
     answer = (questions[i].A[0]);
     console.log("i is" + i);
     console.log(answer);
+    key();
 
   };
 }
